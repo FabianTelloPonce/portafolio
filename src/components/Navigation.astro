@@ -1,0 +1,248 @@
+---
+---
+
+<nav class="navbar" role="navigation" aria-label="Navegación principal">
+  <div class="container">
+    <div class="nav-content">
+      <a href="#home" class="nav-brand" aria-label="Ir al inicio">
+        <span class="brand-text">Portfolio</span>
+      </a>
+      
+      <button 
+        class="nav-toggle" 
+        type="button" 
+        aria-label="Abrir menú de navegación"
+        aria-expanded="false"
+        aria-controls="nav-menu"
+      >
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+        <span class="hamburger"></span>
+      </button>
+      
+      <ul class="nav-menu" id="nav-menu" role="menubar">
+        <li role="none">
+          <a href="#home" class="nav-link" role="menuitem">Inicio</a>
+        </li>
+        <li role="none">
+          <a href="#about" class="nav-link" role="menuitem">Sobre mí</a>
+        </li>
+        <li role="none">
+          <a href="#experience" class="nav-link" role="menuitem">Experiencia</a>
+        </li>
+        <li role="none">
+          <a href="#projects" class="nav-link" role="menuitem">Proyectos</a>
+        </li>
+        <li role="none">
+          <a href="#skills" class="nav-link" role="menuitem">Habilidades</a>
+        </li>
+        <li role="none">
+          <a href="#contact" class="nav-link" role="menuitem">Contacto</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<style>
+  .navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid var(--color-border);
+    z-index: 1000;
+    transition: all var(--transition-normal);
+  }
+  
+  .nav-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--spacing-4) 0;
+  }
+  
+  .nav-brand {
+    font-size: var(--font-size-xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    text-decoration: none;
+  }
+  
+  .brand-text {
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .nav-toggle {
+    display: none;
+    flex-direction: column;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: var(--spacing-2);
+    gap: 4px;
+  }
+  
+  .hamburger {
+    width: 24px;
+    height: 2px;
+    background-color: var(--color-text);
+    transition: all var(--transition-fast);
+  }
+  
+  .nav-menu {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-8);
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .nav-link {
+    position: relative;
+    color: var(--color-text);
+    font-weight: 500;
+    padding: var(--spacing-2) 0;
+    transition: color var(--transition-fast);
+  }
+  
+  .nav-link::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    transition: width var(--transition-normal);
+  }
+  
+  .nav-link:hover {
+    color: var(--color-primary);
+  }
+  
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    width: 100%;
+  }
+  
+  /* Mobile navigation */
+  @media (max-width: 768px) {
+    .nav-toggle {
+      display: flex;
+    }
+    
+    .nav-menu {
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(10px);
+      flex-direction: column;
+      padding: var(--spacing-6);
+      gap: var(--spacing-4);
+      transform: translateY(-10px);
+      opacity: 0;
+      visibility: hidden;
+      transition: all var(--transition-normal);
+      border-bottom: 1px solid var(--color-border);
+    }
+    
+    .nav-menu.active {
+      transform: translateY(0);
+      opacity: 1;
+      visibility: visible;
+    }
+    
+    .nav-link {
+      display: block;
+      text-align: center;
+      padding: var(--spacing-3) 0;
+    }
+    
+    /* Hamburger animation */
+    .nav-toggle.active .hamburger:nth-child(1) {
+      transform: rotate(45deg) translate(5px, 5px);
+    }
+    
+    .nav-toggle.active .hamburger:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .nav-toggle.active .hamburger:nth-child(3) {
+      transform: rotate(-45deg) translate(7px, -6px);
+    }
+  }
+  
+  /* Scroll behavior */
+  .navbar.scrolled {
+    background: rgba(255, 255, 255, 0.98);
+    box-shadow: var(--shadow-md);
+  }
+</style>
+
+<script>
+  // Mobile navigation toggle
+  const navToggle = document.querySelector('.nav-toggle');
+  const navMenu = document.querySelector('.nav-menu');
+  
+  if (navToggle && navMenu) {
+    navToggle.addEventListener('click', () => {
+      const isExpanded = navToggle.getAttribute('aria-expanded') === 'true';
+      
+      navToggle.setAttribute('aria-expanded', (!isExpanded).toString());
+      navToggle.classList.toggle('active');
+      navMenu.classList.toggle('active');
+    });
+    
+    // Close mobile menu when clicking on a link
+    document.querySelectorAll('.nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        navToggle.classList.remove('active');
+        navMenu.classList.remove('active');
+        navToggle.setAttribute('aria-expanded', 'false');
+      });
+    });
+  }
+  
+  // Add scrolled class to navbar
+  window.addEventListener('scroll', () => {
+    const navbar = document.querySelector('.navbar');
+    if (navbar) {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+  });
+  
+  // Update active navigation link based on scroll position
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section[id]') as NodeListOf<HTMLElement>;
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    let currentSection = '';
+    
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop - 100;
+      if (window.scrollY >= sectionTop) {
+        currentSection = section.getAttribute('id') || '';
+      }
+    });
+    
+    navLinks.forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === `#${currentSection}`) {
+        link.classList.add('active');
+      }
+    });
+  });
+</script>

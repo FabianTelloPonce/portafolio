@@ -1,0 +1,326 @@
+---
+interface Props {
+  name: string;
+  title: string;
+  description: string;
+  profileImage?: string;
+}
+
+const { name, title,profileImage = "/images/profile.jpg" } = Astro.props;
+---
+
+<section id="home" class="hero">
+  <div class="container">
+    <div class="hero-content fade-in">
+      <div class="hero-text">
+        <p class="hero-greeting">¡Hola! Soy</p>
+        <h1 class="hero-name">{"Fabian Enrique Tello Ponce"}</h1>
+        <h2 class="hero-title">{"Estudiante de Ingenieria"}</h2>
+        <p class="hero-description">{"Me gusta aprender"}</p>
+        
+        <div class="hero-actions">
+          <a href="#contact" class="btn btn-primary">
+            Contáctame
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M7 17L17 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7 7H17V17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="#projects" class="btn btn-outline">Ver Proyectos</a>
+        </div>
+        
+        <div class="hero-social">
+          <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="https://github.com/FabianTelloPonce" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M9 19C4 20.5 4 16.5 2 16M22 16V18.13C22 19.48 21.11 20.44 19.85 20.8L18 21.5C16.94 21.83 15.83 21.83 14.77 21.5L13 20.8C11.89 20.44 11 19.48 11 18.13V16M16 8C16.34 8.75 16.34 10.25 16 11C17.25 11 20 11 20 15C20 16.5 19.5 17.75 18.5 18.5C17.5 19.25 16.25 19.5 15 19.5H9C7.75 19.5 6.5 19.25 5.5 18.5C4.5 17.75 4 16.5 4 15C4 11 6.75 11 8 11C7.66 10.25 7.66 8.75 8 8C8.5 8 10 8.5 11 9.5C12 8.5 13.5 8 14 8C14.5 8 16 8.5 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a href="mailto:telloponcefabian@gmail.com" aria-label="Email">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      
+      <div class="hero-image">
+        <div class="image-container">
+          <img 
+            src={"C:\\Users\\tello\\cvweb.jpg"} 
+
+            loading="eager"
+            width="400"
+            height="400"
+            class="profile-img"
+          />
+          <div class="image-bg"></div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="scroll-indicator">
+      <a href="#about" aria-label="Ir a la siguiente sección">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M7 13L12 18L17 13" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M7 6L12 11L17 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-top: 80px;
+    background: linear-gradient(135deg, var(--color-background) 0%, var(--color-background-alt) 100%);
+  }
+  
+  .hero-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--spacing-12);
+    align-items: center;
+    width: 100%;
+  }
+  
+  .hero-text {
+    order: 1;
+  }
+  
+  .hero-greeting {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-2);
+    font-weight: 500;
+  }
+  
+  .hero-name {
+    font-size: var(--font-size-5xl);
+    font-weight: 800;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--spacing-2);
+    line-height: 1.1;
+  }
+  
+  .hero-title {
+    font-size: var(--font-size-2xl);
+    color: var(--color-text);
+    margin-bottom: var(--spacing-6);
+    font-weight: 600;
+  }
+  
+  .hero-description {
+    font-size: var(--font-size-lg);
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-8);
+    line-height: 1.7;
+    max-width: 500px;
+  }
+  
+  .hero-actions {
+    display: flex;
+    gap: var(--spacing-4);
+    margin-bottom: var(--spacing-8);
+  }
+  
+  .btn svg {
+    margin-left: var(--spacing-2);
+    transition: transform var(--transition-fast);
+  }
+  
+  .btn:hover svg {
+    transform: translateX(2px);
+  }
+  
+  .hero-social {
+    display: flex;
+    gap: var(--spacing-4);
+  }
+  
+  .hero-social a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-lg);
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-light);
+    transition: all var(--transition-fast);
+  }
+  
+  .hero-social a:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .hero-image {
+    order: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  
+  .image-container {
+    position: relative;
+    width: 350px;
+    height: 350px;
+  }
+  
+  .profile-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: var(--radius-2xl);
+    box-shadow: var(--shadow-xl);
+    position: relative;
+    z-index: 2;
+    border: 4px solid white;
+  }
+  
+  .image-bg {
+    position: absolute;
+    top: 20px;
+    right: -20px;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    border-radius: var(--radius-2xl);
+    z-index: 1;
+    opacity: 0.1;
+  }
+  
+  .scroll-indicator {
+    position: absolute;
+    bottom: var(--spacing-8);
+    left: 50%;
+    transform: translateX(-50%);
+    animation: bounce 2s infinite;
+  }
+  
+  .scroll-indicator a {
+    color: var(--color-text-light);
+    transition: color var(--transition-fast);
+  }
+  
+  .scroll-indicator a:hover {
+    color: var(--color-primary);
+  }
+  
+  @keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+      transform: translateX(-50%) translateY(0);
+    }
+    40% {
+      transform: translateX(-50%) translateY(-10px);
+    }
+    60% {
+      transform: translateX(-50%) translateY(-5px);
+    }
+  }
+  
+  /* Responsive design */
+  @media (max-width: 968px) {
+    .hero-content {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-8);
+      text-align: center;
+    }
+    
+    .hero-text {
+      order: 2;
+    }
+    
+    .hero-image {
+      order: 1;
+    }
+    
+    .image-container {
+      width: 280px;
+      height: 280px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .hero {
+      min-height: 90vh;
+      padding-top: 100px;
+    }
+    
+    .hero-name {
+      font-size: var(--font-size-4xl);
+    }
+    
+    .hero-title {
+      font-size: var(--font-size-xl);
+    }
+    
+    .hero-description {
+      font-size: var(--font-size-base);
+    }
+    
+    .hero-actions {
+      flex-direction: column;
+      align-items: center;
+      gap: var(--spacing-3);
+    }
+    
+    .btn {
+      width: 100%;
+      max-width: 250px;
+    }
+    
+    .image-container {
+      width: 250px;
+      height: 250px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .hero {
+      padding-top: 80px;
+    }
+    
+    .image-container {
+      width: 200px;
+      height: 200px;
+    }
+    
+    .hero-social {
+      justify-content: center;
+    }
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .scroll-indicator {
+      animation: none;
+    }
+    
+    .btn:hover svg {
+      transform: none;
+    }
+    
+    .hero-social a:hover {
+      transform: none;
+    }
+  }
+</style>

@@ -1,0 +1,363 @@
+---
+interface Props {
+  name: string;
+  email: string;
+}
+
+const { name, email } = Astro.props;
+const currentYear = new Date().getFullYear();
+---
+
+<footer class="footer">
+  <div class="container">
+    <div class="footer-content">
+      <div class="footer-main">
+        <div class="footer-brand">
+          <h3>{name}</h3>
+          <p>Estudianre apasionado por aprender y ampliar mis habilidades</p>
+        </div>
+        
+        <div class="footer-links">
+          <div class="footer-section">
+            <h4>Navegación</h4>
+            <ul>
+              <li><a href="#home">Inicio</a></li>
+              <li><a href="#about">Sobre mí</a></li>
+              <li><a href="#experience">Experiencia</a></li>
+              <li><a href="#projects">Proyectos</a></li>
+              <li><a href="#skills">Habilidades</a></li>
+              <li><a href="#contact">Contacto</a></li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Contacto</h4>
+            <ul>
+              <li>
+                <a href={`mailto:${email}`}>
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M4 4H20C21.1 4 22 4.9 22 6V18C22 19.1 21.1 20 20 20H4C2.9 20 2 19.1 2 18V6C2 4.9 2.9 4 4 4Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    <polyline points="22,6 12,13 2,6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                  {email}
+                </a>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="footer-section">
+            <h4>Sígueme</h4>
+            <div class="social-links">
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M16 8C17.5913 8 19.1174 8.63214 20.2426 9.75736C21.3679 10.8826 22 12.4087 22 14V21H18V14C18 13.4696 17.7893 12.9609 17.4142 12.5858C17.0391 12.2107 16.5304 12 16 12C15.4696 12 14.9609 12.2107 14.5858 12.5858C14.2107 12.9609 14 13.4696 14 14V21H10V14C10 12.4087 10.6321 10.8826 11.7574 9.75736C12.8826 8.63214 14.4087 8 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <rect x="2" y="9" width="4" height="12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="4" cy="4" r="2" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              
+              <a href="https://github.com" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M9 19C4 20.5 4 16.5 2 16M22 16V18.13C22 19.48 21.11 20.44 19.85 20.8L18 21.5C16.94 21.83 15.83 21.83 14.77 21.5L13 20.8C11.89 20.44 11 19.48 11 18.13V16M16 8C16.34 8.75 16.34 10.25 16 11C17.25 11 20 11 20 15C20 16.5 19.5 17.75 18.5 18.5C17.5 19.25 16.25 19.5 15 19.5H9C7.75 19.5 6.5 19.25 5.5 18.5C4.5 17.75 4 16.5 4 15C4 11 6.75 11 8 11C7.66 10.25 7.66 8.75 8 8C8.5 8 10 8.5 11 9.5C12 8.5 13.5 8 14 8C14.5 8 16 8.5 16 8Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+              
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M23 3C22.0424 3.67548 20.9821 4.19211 19.86 4.53C19.2577 3.83751 18.4573 3.34669 17.567 3.12393C16.6767 2.90116 15.7395 2.95718 14.8821 3.28445C14.0247 3.61173 13.2884 4.19445 12.773 4.95371C12.2575 5.71297 11.9877 6.61435 12 7.53V8.53C10.2426 8.57557 8.50127 8.18581 6.93101 7.39624C5.36074 6.60667 4.01032 5.43666 3 4C3 4 -1 13 8 17C5.94053 18.398 3.48716 19.099 1 19C10 24 21 19 21 7.5C20.9991 7.22145 20.9723 6.94359 20.92 6.67C21.9406 5.66349 22.6608 4.39271 23 3Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="footer-bottom">
+        <div class="footer-copy">
+          <p>&copy; {currentYear} {name}. Todos los derechos reservados.</p>
+        </div>
+        
+        <div class="footer-tech">
+          <p>
+            Hecho con 
+            <span class="heart">❤️</span> 
+            usando 
+            <a href="https://astro.build" target="_blank" rel="noopener noreferrer">Astro</a>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Back to top button -->
+  <button class="back-to-top" id="backToTop" aria-label="Volver al inicio">
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path d="M18 15L12 9L6 15" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
+  </button>
+</footer>
+
+<style>
+  .footer {
+    background: var(--color-text);
+    color: var(--color-background);
+    position: relative;
+    margin-top: var(--spacing-20);
+  }
+  
+  .footer-content {
+    padding: var(--spacing-16) 0 var(--spacing-8);
+  }
+  
+  .footer-main {
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: var(--spacing-12);
+    margin-bottom: var(--spacing-12);
+  }
+  
+  .footer-brand h3 {
+    font-size: var(--font-size-2xl);
+    font-weight: 700;
+    margin-bottom: var(--spacing-4);
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+  
+  .footer-brand p {
+    color: rgba(255, 255, 255, 0.8);
+    line-height: 1.6;
+    margin: 0;
+  }
+  
+  .footer-links {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-8);
+  }
+  
+  .footer-section h4 {
+    color: white;
+    font-size: var(--font-size-lg);
+    font-weight: 600;
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .footer-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .footer-section li {
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .footer-section a {
+    color: rgba(255, 255, 255, 0.8);
+    text-decoration: none;
+    transition: color var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-2);
+  }
+  
+  .footer-section a:hover {
+    color: var(--color-accent);
+  }
+  
+  .social-links {
+    display: flex;
+    gap: var(--spacing-3);
+  }
+  
+  .social-links a {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: rgba(255, 255, 255, 0.8);
+    transition: all var(--transition-fast);
+  }
+  
+  .social-links a:hover {
+    background: var(--color-primary);
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  .footer-bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: var(--spacing-8);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .footer-copy p,
+  .footer-tech p {
+    color: rgba(255, 255, 255, 0.6);
+    margin: 0;
+    font-size: var(--font-size-sm);
+  }
+  
+  .footer-tech a {
+    color: var(--color-accent);
+    text-decoration: none;
+    font-weight: 500;
+  }
+  
+  .footer-tech a:hover {
+    text-decoration: underline;
+  }
+  
+  .heart {
+    color: #ef4444;
+    animation: heartbeat 1.5s ease-in-out infinite;
+  }
+  
+  @keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+  }
+  
+  .back-to-top {
+    position: fixed;
+    bottom: var(--spacing-6);
+    right: var(--spacing-6);
+    width: 50px;
+    height: 50px;
+    background: var(--color-primary);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all var(--transition-normal);
+    z-index: 1000;
+    box-shadow: var(--shadow-lg);
+  }
+  
+  .back-to-top.visible {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+  
+  .back-to-top:hover {
+    background: var(--color-primary-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-xl);
+  }
+  
+  /* Responsive design */
+  @media (max-width: 968px) {
+    .footer-main {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-8);
+    }
+    
+    .footer-links {
+      grid-template-columns: repeat(2, 1fr);
+      gap: var(--spacing-6);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .footer-content {
+      padding: var(--spacing-12) 0 var(--spacing-6);
+    }
+    
+    .footer-main {
+      gap: var(--spacing-6);
+      margin-bottom: var(--spacing-8);
+    }
+    
+    .footer-links {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-6);
+    }
+    
+    .footer-bottom {
+      flex-direction: column;
+      gap: var(--spacing-4);
+      text-align: center;
+    }
+    
+    .social-links {
+      justify-content: center;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .footer-content {
+      padding: var(--spacing-8) 0 var(--spacing-4);
+    }
+    
+    .footer-brand h3 {
+      font-size: var(--font-size-xl);
+    }
+    
+    .back-to-top {
+      width: 45px;
+      height: 45px;
+      bottom: var(--spacing-4);
+      right: var(--spacing-4);
+    }
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .heart {
+      animation: none;
+    }
+    
+    .social-links a:hover {
+      transform: none;
+    }
+    
+    .back-to-top:hover {
+      transform: none;
+    }
+    
+    .back-to-top.visible {
+      transform: none;
+    }
+  }
+</style>
+
+<script>
+  // Back to top functionality
+  document.addEventListener('DOMContentLoaded', () => {
+    const backToTop = document.getElementById('backToTop');
+    
+    if (backToTop) {
+      // Show/hide back to top button
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) {
+          backToTop.classList.add('visible');
+        } else {
+          backToTop.classList.remove('visible');
+        }
+      });
+      
+      // Scroll to top on click
+      backToTop.addEventListener('click', () => {
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  });
+</script>

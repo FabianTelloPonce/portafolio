@@ -1,0 +1,273 @@
+---
+interface Props {
+  bio: string;
+  achievements?: Array<{
+    number: string;
+    label: string;
+  }>;
+}
+
+const { bio, achievements = [] } = Astro.props;
+---
+
+<section id="about" class="section section-alt">
+  <div class="container">
+    <div class="about-content fade-in">
+      <div class="about-header">
+        <h2>Sobre mí</h2>
+        <div class="section-divider"></div>
+      </div>
+      
+      <div class="about-grid">
+        <div class="about-text">
+          <p class="about-bio">{"Me gusta todo lo relazionado a aprender, soy un estudiante mi conocimiento es basico pero espero actualizarme pronto"}</p>
+          
+          <div class="about-highlights">
+            <div class="highlight-item">
+              <div class="highlight-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M12 2L3 7L12 12L21 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3 17L12 22L21 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M3 12L12 17L21 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="highlight-content">
+                <h4>Aprendizaje Continuo</h4>
+                <p>Siempre buscando nuevas tecnologías para mantenerme actualizado en el desarrollo web moderno.</p>
+              </div>
+            </div>
+            
+            <div class="highlight-item">
+              <div class="highlight-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path d="M17 21V19C17 17.9391 16.5786 16.9217 15.8284 16.1716C15.0783 15.4214 14.0609 15 13 15H5C3.93913 15 2.92172 15.4214 2.17157 16.1716C1.42143 16.9217 1 17.9391 1 19V21" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  <path d="M23 21V19C23 18.1645 22.7155 17.3541 22.2094 16.7166C21.7033 16.0791 20.9999 15.6535 20.2 15.5M16 3.13C16.8604 3.35031 17.623 3.85071 18.1676 4.55332C18.7122 5.25592 18.9078 6.11451 18.7176 6.93569C18.5274 7.75687 18.0656 8.48835 17.4253 9.00942C16.785 9.53049 15.9997 9.81003 15.2 9.81003" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="highlight-content">
+                <h4>Trabajo en Equipo</h4>
+                <p>Experiencia colaborando en equipos multidisciplinarios usando metodologías ágiles</p>
+              </div>
+            </div>
+            
+            <div class="highlight-item">
+              <div class="highlight-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <polyline points="22,12 18,12 15,21 9,3 6,12 2,12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+              </div>
+              <div class="highlight-content">
+                <h4>Rendimiento</h4>
+                <p>Enfocado en crear aplicaciones optimizadas, accesibles y con excelente experiencia de usuario.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        {achievements.length > 0 && (
+          <div class="about-stats">
+            <h3>Logros</h3>
+            <div class="stats-grid">
+              {achievements.map((achievement) => (
+                <div class="stat-item">
+                  <div class="stat-number">{achievement.number}</div>
+                  <div class="stat-label">{achievement.label}</div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .about-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .about-header {
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+  }
+  
+  .about-header h2 {
+    color: var(--color-text);
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .section-divider {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    margin: 0 auto;
+    border-radius: var(--radius-sm);
+  }
+  
+  .about-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: var(--spacing-12);
+    align-items: start;
+  }
+  
+  .about-bio {
+    font-size: var(--font-size-lg);
+    line-height: 1.8;
+    color: var(--color-text-light);
+    margin-bottom: var(--spacing-8);
+  }
+  
+  .about-highlights {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-6);
+  }
+  
+  .highlight-item {
+    display: flex;
+    gap: var(--spacing-4);
+    align-items: flex-start;
+  }
+  
+  .highlight-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+  }
+  
+  .highlight-content h4 {
+    color: var(--color-text);
+    margin-bottom: var(--spacing-2);
+    font-size: var(--font-size-lg);
+  }
+  
+  .highlight-content p {
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  .about-stats {
+    background: var(--color-background);
+    padding: var(--spacing-8);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    height: fit-content;
+  }
+  
+  .about-stats h3 {
+    color: var(--color-text);
+    margin-bottom: var(--spacing-6);
+    text-align: center;
+  }
+  
+  .stats-grid {
+    display: grid;
+    gap: var(--spacing-6);
+  }
+  
+  .stat-item {
+    text-align: center;
+    padding: var(--spacing-4);
+    border-radius: var(--radius-lg);
+    background: var(--color-background-alt);
+    transition: transform var(--transition-fast);
+  }
+  
+  .stat-item:hover {
+    transform: translateY(-2px);
+  }
+  
+  .stat-number {
+    font-size: var(--font-size-3xl);
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: var(--spacing-1);
+  }
+  
+  .stat-label {
+    color: var(--color-text-light);
+    font-size: var(--font-size-sm);
+    font-weight: 500;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 968px) {
+    .about-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-8);
+    }
+    
+    .about-stats {
+      order: -1;
+    }
+    
+    .stats-grid {
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: var(--spacing-4);
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .about-header {
+      margin-bottom: var(--spacing-8);
+    }
+    
+    .about-bio {
+      font-size: var(--font-size-base);
+    }
+    
+    .highlight-item {
+      flex-direction: column;
+      text-align: center;
+      gap: var(--spacing-3);
+    }
+    
+    .highlight-icon {
+      margin: 0 auto;
+    }
+    
+    .about-stats {
+      padding: var(--spacing-6);
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .about-highlights {
+      gap: var(--spacing-4);
+    }
+    
+    .highlight-item {
+      gap: var(--spacing-2);
+    }
+    
+    .highlight-icon {
+      width: 40px;
+      height: 40px;
+    }
+    
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .stat-item:hover {
+      transform: none;
+    }
+  }
+</style>

@@ -1,0 +1,93 @@
+---
+export interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description = "Portfolio profesional - Desarrollador Full Stack" } = Astro.props;
+---
+
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    
+    <!-- SEO Meta Tags -->
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={title} />
+    <meta name="twitter:description" content={description} />
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+    
+    <title>{title}</title>
+  </head>
+  <body>
+    <slot />
+    
+    <!-- Smooth scrolling script -->
+    <script>
+      document.addEventListener('DOMContentLoaded', () => {
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+          anchor.addEventListener('click', function (e: Event) {
+            e.preventDefault();
+            const element = e.currentTarget as HTMLAnchorElement;
+            const targetId = element.getAttribute('href');
+            if (targetId) {
+              const target = document.querySelector(targetId);
+              if (target) {
+                target.scrollIntoView({
+                  behavior: 'smooth',
+                  block: 'start'
+                });
+              }
+            }
+          });
+        });
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+          threshold: 0.1,
+          rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('animate-in');
+            }
+          });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+          observer.observe(el);
+        });
+
+        // Lazy loading for images
+        if ('loading' in HTMLImageElement.prototype) {
+          const images = document.querySelectorAll('img[loading="lazy"]') as NodeListOf<HTMLImageElement>;
+          images.forEach(img => {
+            if (img.dataset.src) {
+              img.src = img.dataset.src;
+            }
+          });
+        } else {
+          // Fallback for browsers that don't support lazy loading
+          const script = document.createElement('script');
+          script.src = 'https://polyfill.io/v3/polyfill.min.js?features=IntersectionObserver';
+          document.head.appendChild(script);
+        }
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,177 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Navigation from '../components/Navigation.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import Experience from '../components/Experience.astro';
+import Projects from '../components/Projects.astro';
+import Skills from '../components/Skills.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
+
+// Data for the portfolio (replace with your actual information)
+const personalInfo = {
+  name: "Tu Nombre",
+  title: "Desarrollador Full Stack",
+  description: "Apasionado por crear experiencias web excepcionales y soluciones tecnológicas innovadoras. Especializado en desarrollo frontend y backend con más de X años de experiencia.",
+  email: "telloponcefabian@gmail.com",
+  phone: "+52 833 339 8874q",
+  location: "Mexico, Tamaulipas"
+};
+
+const bio = "Listo por aprender y trabajar";
+
+const achievements = [
+  { number: "3+", label: "Proyectos de Estudio" },
+  { number: "2+", label: "Años Aprendiendo" },
+  { number: "100%", label: "Motivación para Aprender" },
+  { number: "24/7", label: "Dedicación al Estudio" }
+];
+
+const experiences = [
+  {
+    company: "Empresa Actual",
+    position: "Estudiante nuevo nuevo",
+    duration: "2024 - Presente",
+    location: "Mexico, Tamaulipas",
+    description: "Desarrollo y mantenimiento de aplicaciones web utilizando React, Node.js y MongoDB. Liderazgo de un equipo de 3 desarrolladores y implementación de mejores prácticas de desarrollo.",
+    technologies: ["React", "Node.js", "MongoDB", "TypeScript", "AWS"],
+    current: true
+  },
+  {
+    company: "Empresa Anterior",
+    position: "Desarrollador Frontend",
+    duration: "2021 - 2023",
+    location: "Tu Ciudad, País",
+    description: "Creación de interfaces de usuario responsivas y accesibles. Colaboración estrecha con diseñadores UX/UI para implementar prototipos de alta fidelidad.",
+    technologies: ["Vue.js", "JavaScript", "SASS", "Figma", "Git"]
+  },
+  {
+    company: "Primera Empresa",
+    position: "Desarrollador Junior",
+    duration: "2020 - 2021",
+    location: "Tu Ciudad, País",
+    description: "Desarrollo de componentes web reutilizables y mantenimiento de aplicaciones legacy. Aprendizaje y aplicación de metodologías ágiles.",
+    technologies: ["HTML", "CSS", "JavaScript", "jQuery", "PHP"]
+  }
+];
+
+const projects = [
+  {
+    title: "Transportes BellaVista",
+    description: "Proyecto concentrado en la renta de vehiculos.",
+    image: "/images/project-ecommerce.jpg",
+    technologies: ["Laravel", "PHP", "PostgreSQL", "HTML", "CSS"],
+    githubUrl: "https://github.com/tu-usuario/ecommerce",
+    liveUrl: "https://ecommerce-demo.netlify.app",
+    featured: true
+  },
+  {
+    title: "Proyecto 2",
+    description: "Pendiente.",
+    image: "/images/project-dashboard.jpg",
+    technologies: ["Vue.js", "D3.js", "Express", "MongoDB", "WebSocket"],
+    githubUrl: "https://github.com/tu-usuario/dashboard",
+    liveUrl: "https://dashboard-demo.netlify.app",
+    featured: true
+  },
+  {
+    title: "App de Gestión de Tareas",
+    description: "Aplicación de productividad con funcionalidades de kanban board, calendario integrado y colaboración en equipo.",
+    image: "/images/project-tasks.jpg",
+    technologies: ["React Native", "Firebase", "Redux", "TypeScript"],
+    githubUrl: "https://github.com/tu-usuario/task-manager",
+    liveUrl: "https://task-manager-demo.netlify.app"
+  },
+  {
+    title: "Blog Personal",
+    description: "Blog personal con CMS personalizado, optimizado para SEO y con sistema de comentarios.",
+    image: "/images/project-blog.jpg",
+    technologies: ["Astro", "Markdown", "Tailwind CSS", "Netlify CMS"],
+    githubUrl: "https://github.com/tu-usuario/blog",
+    liveUrl: "https://mi-blog.netlify.app"
+  }
+];
+
+const skills = [
+  // Frontend
+  { name: "React", category: "frontend" as const },
+  { name: "Vue.js", category: "frontend" as const },
+  { name: "TypeScript", category: "frontend" as const },
+  { name: "JavaScript", category: "frontend" as const },
+  { name: "HTML/CSS", category: "frontend" as const },
+  { name: "Tailwind CSS", category: "frontend" as const },
+  
+  // Backend
+  { name: "Node.js", category: "backend" as const },
+  { name: "Express",  category: "backend" as const },
+  { name: "MongoDB", category: "backend" as const },
+  { name: "PostgreSQL", category: "backend" as const },
+  { name: "API REST", category: "backend" as const },
+  { name: "GraphQL", category: "backend" as const },
+
+  // Tools
+  { name: "Git", category: "tools" as const },
+  { name: "Docker", category: "tools" as const },
+  { name: "AWS", category: "tools" as const },
+  { name: "Figma", category: "tools" as const },
+  { name: "VS Code", category: "tools" as const },
+
+  // Soft Skills
+  { name: "Trabajo en Equipo", category: "soft" as const },
+  { name: "Comunicación", category: "soft" as const },
+  { name: "Resolución de Problemas", category: "soft" as const },
+  { name: "Adaptabilidad", category: "soft" as const },
+  { name: "Inglés", category: "soft" as const }
+];
+
+const contactInfo = {
+  email: "telloponcefabian@gmail.com",
+  phone: "+52 833 339 8874",
+  location: personalInfo.location,
+  linkedin: "https://linkedin.com/in/tu-perfil",
+  github: "https://github.com/FabianTelloPonce"
+};
+---
+
+<Layout title="Portfolio - Tu Nombre" description="Portfolio profesional de Tu Nombre - Desarrollador Full Stack especializado en tecnologías web modernas">
+  <a href="#main" class="skip-link">Saltar al contenido principal</a>
+  
+  <Navigation />
+  
+  <main id="main">
+    <Hero 
+      name={personalInfo.name}
+      title={personalInfo.title}
+      description={personalInfo.description}
+      profileImage="/images/profile.jpg"
+    />
+    
+    <About 
+      bio={bio}
+      achievements={achievements}
+    />
+    
+    <Experience 
+      experiences={experiences}
+    />
+    
+    <Projects 
+      projects={projects}
+    />
+    
+    <Skills 
+      skills={skills}
+    />
+    
+    <Contact 
+      contactInfo={contactInfo}
+    />
+  </main>
+  
+  <Footer 
+    name={personalInfo.name}
+    email={personalInfo.email}
+  />
+</Layout>

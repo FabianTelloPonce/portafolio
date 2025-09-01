@@ -1,0 +1,354 @@
+---
+interface Skill {
+  name: string;
+  category: 'frontend' | 'backend' | 'tools' | 'soft';
+}
+
+interface Props {
+  skills: Skill[];
+}
+
+const { skills } = Astro.props;
+
+// Group skills by category
+const skillCategories = {
+  frontend: skills.filter(s => s.category === 'frontend'),
+  backend: skills.filter(s => s.category === 'backend'),
+  tools: skills.filter(s => s.category === 'tools'),
+  soft: skills.filter(s => s.category === 'soft')
+};
+
+const categoryTitles = {
+  frontend: 'Frontend',
+  backend: 'Backend',
+  tools: 'Herramientas',
+  soft: 'Habilidades Blandas'
+};
+
+const categoryIcons = {
+  frontend: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+    <line x1="8" y1="21" x2="16" y2="21" stroke="currentColor" stroke-width="2"/>
+    <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2"/>
+  </svg>`,
+  backend: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <rect x="2" y="3" width="20" height="14" rx="2" ry="2" stroke="currentColor" stroke-width="2"/>
+    <rect x="8" y="21" width="8" height="2" rx="1" ry="1" stroke="currentColor" stroke-width="2"/>
+    <line x1="12" y1="17" x2="12" y2="21" stroke="currentColor" stroke-width="2"/>
+    <path d="M6 7h4M6 10h2M14 7h4M14 10h4" stroke="currentColor" stroke-width="2"/>
+  </svg>`,
+  tools: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" stroke="currentColor" stroke-width="2"/>
+  </svg>`,
+  soft: `<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" stroke="currentColor" stroke-width="2"/>
+    <circle cx="9" cy="7" r="4" stroke="currentColor" stroke-width="2"/>
+    <path d="M23 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75" stroke="currentColor" stroke-width="2"/>
+  </svg>`
+};
+---
+
+<section id="skills" class="section">
+  <div class="container">
+    <div class="skills-content fade-in">
+      <div class="section-header">
+        <h2>Habilidades Técnicas</h2>
+        <div class="section-divider"></div>
+        <p class="section-description">
+          Tecnologías y herramientas que domino para crear soluciones digitales de calidad
+        </p>
+      </div>
+      
+      <div class="skills-grid">
+        {Object.entries(skillCategories).map(([category, categorySkills]) => 
+          categorySkills.length > 0 && (
+            <div class="skill-category">
+              <div class="category-header">
+                <div class="category-icon" set:html={categoryIcons[category as keyof typeof categoryIcons]}></div>
+                <h3>{categoryTitles[category as keyof typeof categoryTitles]}</h3>
+              </div>
+              
+              <div class="skills-list">
+                {categorySkills.map((skill) => (
+                  <div class="skill-item">
+                    <span class="skill-name">{skill.name}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )
+        )}
+      </div>
+      
+      <div class="skills-summary">
+        <div class="summary-card">
+          <div class="summary-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="summary-content">
+            <h4>Aprendizaje Continuo</h4>
+            <p>Siempre manteniéndome actualizado con las últimas tecnologías y mejores prácticas del desarrollo web.</p>
+          </div>
+        </div>
+        
+        <div class="summary-card">
+          <div class="summary-icon">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <polyline points="20,6 9,17 4,12" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div class="summary-content">
+            <h4>Enfoque en Calidad</h4>
+            <p>Comprometido con escribir código limpio, mantenible y siguiendo las mejores prácticas de la industria.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-content {
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+  
+  .section-header {
+    text-align: center;
+    margin-bottom: var(--spacing-12);
+  }
+  
+  .section-header h2 {
+    color: var(--color-text);
+    margin-bottom: var(--spacing-4);
+  }
+  
+  .section-divider {
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    margin: 0 auto var(--spacing-4);
+    border-radius: var(--radius-sm);
+  }
+  
+  .section-description {
+    color: var(--color-text-light);
+    font-size: var(--font-size-lg);
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-8);
+    margin-bottom: var(--spacing-12);
+  }
+  
+  .skill-category {
+    background: var(--color-background);
+    border-radius: var(--radius-xl);
+    padding: var(--spacing-6);
+    box-shadow: var(--shadow-md);
+    transition: all var(--transition-normal);
+  }
+  
+  .skill-category:hover {
+    box-shadow: var(--shadow-lg);
+    transform: translateY(-2px);
+  }
+  
+  .category-header {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-3);
+    margin-bottom: var(--spacing-6);
+    padding-bottom: var(--spacing-4);
+    border-bottom: 1px solid var(--color-border);
+  }
+  
+  .category-icon {
+    width: 40px;
+    height: 40px;
+    background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .category-header h3 {
+    color: var(--color-text);
+    font-size: var(--font-size-xl);
+    font-weight: 600;
+    margin: 0;
+  }
+  
+  .skills-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: var(--spacing-3);
+  }
+  
+  .skill-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-3) var(--spacing-4);
+    background: var(--color-background-alt);
+    border-radius: var(--radius-lg);
+    border: 1px solid var(--color-border);
+    transition: all var(--transition-fast);
+    text-align: center;
+  }
+  
+  .skill-item:hover {
+    background: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+  }
+  
+  .skill-name {
+    color: var(--color-text);
+    font-weight: 500;
+    font-size: var(--font-size-sm);
+    transition: color var(--transition-fast);
+  }
+  
+  .skill-item:hover .skill-name {
+    color: white;
+  }
+  
+  .skills-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-6);
+  }
+  
+  .summary-card {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--spacing-4);
+    padding: var(--spacing-6);
+    background: var(--color-background);
+    border-radius: var(--radius-xl);
+    box-shadow: var(--shadow-md);
+    border-left: 4px solid var(--color-primary);
+  }
+  
+  .summary-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: var(--color-background-alt);
+    border-radius: var(--radius-lg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-primary);
+  }
+  
+  .summary-content h4 {
+    color: var(--color-text);
+    font-size: var(--font-size-lg);
+    margin-bottom: var(--spacing-2);
+  }
+  
+  .summary-content p {
+    color: var(--color-text-light);
+    margin: 0;
+    line-height: 1.6;
+  }
+  
+  /* Responsive design */
+  @media (max-width: 768px) {
+    .skills-grid {
+      grid-template-columns: 1fr;
+      gap: var(--spacing-6);
+      margin-bottom: var(--spacing-8);
+    }
+    
+    .skill-category {
+      padding: var(--spacing-4);
+    }
+    
+    .category-header {
+      margin-bottom: var(--spacing-4);
+      padding-bottom: var(--spacing-3);
+    }
+    
+    .category-icon {
+      width: 36px;
+      height: 36px;
+    }
+    
+    .category-header h3 {
+      font-size: var(--font-size-lg);
+    }
+    
+    .skills-summary {
+      grid-template-columns: 1fr;
+    }
+    
+    .skills-list {
+      grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+      gap: var(--spacing-2);
+    }
+    
+    .summary-card {
+      padding: var(--spacing-4);
+    }
+    
+    .summary-icon {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .section-header {
+      margin-bottom: var(--spacing-8);
+    }
+    
+    .section-description {
+      font-size: var(--font-size-base);
+    }
+    
+    .skills-grid {
+      gap: var(--spacing-4);
+    }
+    
+    .skill-category {
+      padding: var(--spacing-3);
+    }
+    
+    .skills-list {
+      grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+      gap: var(--spacing-1);
+    }
+    
+    .skill-item {
+      padding: var(--spacing-2);
+      font-size: var(--font-size-xs);
+    }
+  }
+  
+  /* Reduced motion */
+  @media (prefers-reduced-motion: reduce) {
+    .skill-category:hover {
+      transform: none;
+    }
+    
+    .skill-item:hover {
+      transform: none;
+    }
+  }
+</style>
